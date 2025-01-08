@@ -1,7 +1,6 @@
 package ru.practicum.dto.compilation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +15,6 @@ public class UpdateCompilationRequest {
     @JsonProperty("events")
     private Set<Long> eventIds;
     private Boolean pinned;
-    @NotBlank
     @Size(min = 1, max = 50)
     private String title;
 }
