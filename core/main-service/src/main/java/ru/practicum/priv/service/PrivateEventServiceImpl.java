@@ -131,6 +131,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
                 event.setState(State.CANCELED);
                 break;
         }
+        event = privateEventRepository.save(event);
         Long confirmedRequests =
                 privateEventRepository.getRequestCountByEventAndStatus(eventId, Status.CONFIRMED).getConfirmedRequests();
         EventFullDto dto = eventFullDtoMapper.toDto(event, confirmedRequests, 0L);
