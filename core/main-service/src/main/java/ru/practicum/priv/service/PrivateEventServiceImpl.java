@@ -106,7 +106,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
         Event event =
                 privateEventRepository.findByIdAndInitiatorId(eventId, userId)
                         .orElseThrow(() -> new NotFoundException("Event not found: " + eventId));
-        if (event.getState().equals(State.PUBLISHED)) {
+        if (event.getState() == State.PUBLISHED) {
             throw new ConflictException("cannot modify in current state");
         }
         final Long categoryId = updateEventUserRequest.getCategoryId();
@@ -131,7 +131,6 @@ public class PrivateEventServiceImpl implements PrivateEventService {
                 event.setState(State.CANCELED);
                 break;
         }
-        event = privateEventRepository.save(event);
         Long confirmedRequests =
                 privateEventRepository.getRequestCountByEventAndStatus(eventId, Status.CONFIRMED).getConfirmedRequests();
         EventFullDto dto = eventFullDtoMapper.toDto(event, confirmedRequests, 0L);
