@@ -1,6 +1,7 @@
 package ru.practicum.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAT_ID_SEQ")
     @SequenceGenerator(name = "CAT_ID_SEQ", sequenceName = "CAT_ID_SEQ", allocationSize = 1)
     private Long id;
-    @Column(nullable = false, unique = true, name = "CATEGORY_NAME")
+    @NotBlank
+    @Column(unique = true, name = "CATEGORY_NAME")
     private String name;
 
     @Override

@@ -28,11 +28,9 @@ public class UserController {
      */
     @GetMapping
     public ResponseEntity<List<UserDto>> getUsers(@RequestParam(required = false) List<Long> ids,
-                                                  @RequestParam(required = false,
-                                                          defaultValue = DataTransferConvention.FROM)
+                                                  @RequestParam(defaultValue = DataTransferConvention.FROM)
                                                   Integer from,
-                                                  @RequestParam(required = false,
-                                                          defaultValue = DataTransferConvention.SIZE)
+                                                  @RequestParam(defaultValue = DataTransferConvention.SIZE)
                                                   Integer size) {
         return new ResponseEntity<>(userService.getUsers(ids, from, size), HttpStatus.OK);
     }

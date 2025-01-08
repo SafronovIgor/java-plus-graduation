@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,11 +25,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateEventAdminRequest {
+    @NotBlank
     @Size(min = 20, max = 2000)
     private String annotation;
     @Min(1)
     @JsonProperty("category")
     private Long categoryId;
+    @NotBlank
     @Size(min = 20, max = 7000)
     private String description;
     @LaterThan(2)
@@ -41,6 +44,7 @@ public class UpdateEventAdminRequest {
     private Integer participantLimit;
     private Boolean requestModeration;
     private AdminStateAction stateAction;
+    @NotBlank
     @Size(min = 3, max = 120)
     private String title;
 }

@@ -31,7 +31,7 @@ public class ControllerAdvice {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
-    public ApiError handleConstraintViolationException(final ConstraintViolationException e) {
+    public ApiError handleConstraintViolationException(ConstraintViolationException e) {
         String message = e.getMessage();
         log.warn("ConstraintViolation: {}", message);
         List<String> errors = new ArrayList<>();
@@ -53,7 +53,7 @@ public class ControllerAdvice {
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(ConflictException.class)
-    public ApiError handleConflictException(final ConflictException e) {
+    public ApiError handleConflictException(ConflictException e) {
         String message = e.getMessage();
         log.warn("Conflict: {}", message);
         List<String> errors = new ArrayList<>();
@@ -69,7 +69,7 @@ public class ControllerAdvice {
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ApiError handleDataIntegrityException(final DataIntegrityViolationException e) {
+    public ApiError handleDataIntegrityException(DataIntegrityViolationException e) {
         String message = e.getMessage();
         log.warn("DataIntegrityViolation: {}", message);
         List<String> errors = new ArrayList<>();
@@ -85,7 +85,7 @@ public class ControllerAdvice {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
-    public ApiError handleConflictException(final NotFoundException e) {
+    public ApiError handleConflictException(NotFoundException e) {
         String message = e.getMessage();
         log.warn("Not Found: {}", message);
         List<String> errors = new ArrayList<>();

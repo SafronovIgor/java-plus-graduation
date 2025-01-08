@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class NewLocusDto {
-    @NotNull
+    @NotBlank
     @Size(min = 2, max = 128, message = "name must be more than 2 characters and less than 128")
     private String name;
     @NotNull

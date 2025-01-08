@@ -47,14 +47,12 @@ public class PublicEventController {
                                                          @RequestParam(required = false)
                                                          @DateTimeFormat(pattern = DataTransferConvention.DATE_TIME_PATTERN)
                                                          LocalDateTime rangeEnd,
-                                                         @RequestParam(required = false, defaultValue = "false")
+                                                         @RequestParam(defaultValue = "false")
                                                          Boolean onlyAvailable,
                                                          @RequestParam(required = false) SortCriterium sort,
-                                                         @RequestParam(required = false,
-                                                                 defaultValue = DataTransferConvention.FROM)
+                                                         @RequestParam(defaultValue = DataTransferConvention.FROM)
                                                          Integer from,
-                                                         @RequestParam(required = false,
-                                                                 defaultValue = DataTransferConvention.SIZE)
+                                                         @RequestParam(defaultValue = DataTransferConvention.SIZE)
                                                          Integer size, HttpServletRequest request) {
         return new ResponseEntity<>(
                 publicEventService.getEvents(text, categories, paid, rangeStart, rangeEnd, onlyAvailable, sort, from, size,
@@ -73,6 +71,4 @@ public class PublicEventController {
     public ResponseEntity<EventFullDto> getEvent(@PathVariable Long id, HttpServletRequest request) {
         return new ResponseEntity<>(publicEventService.getEvent(id, request), HttpStatus.OK);
     }
-
-
 }

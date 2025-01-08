@@ -20,8 +20,8 @@ public class PublicCategoryController {
 
     @GetMapping
     public ResponseEntity<List<CategoryDto>> getCategories(
-            @RequestParam(required = false, defaultValue = DataTransferConvention.FROM) Integer from,
-            @RequestParam(required = false, defaultValue = DataTransferConvention.SIZE) Integer size) {
+            @RequestParam(defaultValue = DataTransferConvention.FROM) Integer from,
+            @RequestParam(defaultValue = DataTransferConvention.SIZE) Integer size) {
         return new ResponseEntity<>(publicCategoryService.getCategories(from, size), HttpStatus.OK);
     }
 

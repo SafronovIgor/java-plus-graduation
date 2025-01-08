@@ -34,11 +34,9 @@ public class PrivateEventController {
 
     @GetMapping
     public ResponseEntity<List<EventShortDto>> getMyEvents(@PathVariable("userId") @Min(1) @NotNull Long userId,
-                                                           @RequestParam(required = false,
-                                                                   defaultValue = DataTransferConvention.FROM)
+                                                           @RequestParam(defaultValue = DataTransferConvention.FROM)
                                                            Integer from,
-                                                           @RequestParam(required = false,
-                                                                   defaultValue = DataTransferConvention.SIZE)
+                                                           @RequestParam(defaultValue = DataTransferConvention.SIZE)
                                                            Integer size) {
         headers.set(HttpHeaders.CONTENT_TYPE, "application/json");
         return new ResponseEntity<>(privateEventService.getMyEvents(userId, from, size), headers, HttpStatus.OK);

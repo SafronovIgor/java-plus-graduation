@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.DataTransferConvention;
 import ru.practicum.dto.compilation.CompilationDto;
 import ru.practicum.pub.service.PublicCompilationService;
 
@@ -20,9 +21,9 @@ public class PublicCompilationController {
      */
     @GetMapping
     public ResponseEntity<List<CompilationDto>> getCompilations(
-            @RequestParam(required = false, defaultValue = "false") Boolean pinned,
-            @RequestParam(required = false, defaultValue = "0") Integer from,
-            @RequestParam(required = false, defaultValue = "10") Integer size) {
+            @RequestParam(defaultValue = "false") Boolean pinned,
+            @RequestParam(defaultValue = DataTransferConvention.FROM) Integer from,
+            @RequestParam(defaultValue = DataTransferConvention.SIZE) Integer size) {
 
         return new ResponseEntity<>(publicCompilationService.getCompilations(pinned, from, size), HttpStatus.OK);
     }

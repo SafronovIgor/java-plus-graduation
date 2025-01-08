@@ -18,7 +18,7 @@ import java.util.List;
 
 public class PrivateEventShortDtoRepositoryImpl implements PrivateEventShortDtoRepository {
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
     @Override
     public List<EventShortDto> getEvents(Long userId,

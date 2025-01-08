@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.DataTransferConvention;
 import ru.practicum.admin.service.AdminEventService;
 import ru.practicum.dto.event.EventFullDto;
 import ru.practicum.dto.event.State;
@@ -30,15 +31,16 @@ public class AdminEventController {
                                                         @RequestParam(required = false) List<State> states,
                                                         @RequestParam(required = false) List<Long> categories,
                                                         @RequestParam(required = false)
-                                                        @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+                                                            @DateTimeFormat(
+                                                                    pattern = DataTransferConvention.DATE_TIME_PATTERN)
                                                         LocalDateTime rangeStart,
                                                         @RequestParam(required = false)
                                                         @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
                                                         LocalDateTime rangeEnd,
                                                         @RequestParam(required = false) List<Long> loci,
-                                                        @RequestParam(required = false, defaultValue = "0")
+                                                        @RequestParam(defaultValue = DataTransferConvention.FROM)
                                                         Integer from,
-                                                        @RequestParam(required = false, defaultValue = "10")
+                                                        @RequestParam(defaultValue = DataTransferConvention.SIZE)
                                                         Integer size) {
         EventSearchParams eventSearchParams =
                 new EventSearchParams(users, states, categories, rangeStart, rangeEnd, loci, from, size);
