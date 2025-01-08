@@ -25,6 +25,7 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
         }
         Category category = new Category();
         category.setName(name);
+        category = adminCategoryRepository.save(category);
         return new CategoryDto(category.getId(), category.getName());
     }
 
