@@ -112,7 +112,6 @@ public class AdminEventServiceImpl implements AdminEventService {
                 log.info("event state changed to {}", event.getState());
                 break;
         }
-        event = adminEventRepository.save(event);
 
         RequestCount requestCount = adminEventRepository.getRequestCountByEventAndStatus(eventId, Status.CONFIRMED);
         EventFullDto eventFullDto = eventFullDtoMapper.toDto(event, requestCount.getConfirmedRequests(), 0L);

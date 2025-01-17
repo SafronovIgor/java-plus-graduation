@@ -148,6 +148,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ParticipationRequestDto> getMyEventRequests(Long userId, Long eventId) {
         boolean exists =
                 privateEventRepository.existsByIdAndInitiatorId(eventId, userId);

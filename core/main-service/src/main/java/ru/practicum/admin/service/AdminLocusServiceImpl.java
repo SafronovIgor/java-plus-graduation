@@ -1,7 +1,6 @@
 package ru.practicum.admin.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.admin.repository.AdminLocusRepository;
@@ -15,7 +14,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 @Transactional(readOnly = true)
 public class AdminLocusServiceImpl implements AdminLocusService {
     private final AdminLocusRepository adminLocusRepository;

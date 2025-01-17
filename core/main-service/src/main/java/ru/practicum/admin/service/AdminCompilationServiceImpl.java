@@ -52,9 +52,8 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
         Compilation compilation = adminCompilationRepository.findById(compId)
                 .orElseThrow(() -> new NotFoundException("No compilation with id " + compId));
         Set<Event> events = adminEventRepository.findAllByIdIn(compilationDto.getEventIds());
-        compilation =
-                adminCompilationRepository.save(
-                        compilationDtoMapper.updateCompilation(compilationDto, compilation, events));
+        compilation = compilationDtoMapper.updateCompilation(compilationDto, compilation, events);
+
         return compilationDtoMapper.toCompilationDto(compilation);
     }
 }
