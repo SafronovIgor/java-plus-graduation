@@ -11,6 +11,7 @@ import ru.practicum.model.ServiceHit;
 import ru.practicum.repository.StatRepository;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -21,18 +22,33 @@ public class StatService {
     private final ServiceHitMapper serviceHitMapper;
 
     public StatRequestDto registerHit(StatRequestDto statRequestDto) {
+        log.info("Registering hit: {}", statRequestDto);
+
         ServiceHit entity = serviceHitMapper.toEntity(statRequestDto);
-        log.info("StatService converted entity: {}", entity);
+        log.debug("Mapped StatRequestDto to ServiceHit entity: {}", entity);
+
         ServiceHit saved = statRepository.save(entity);
-        log.info("StatService saved entity: {}", saved);
+        log.debug("Saved ServiceHit entity: {}", saved);
+
         StatRequestDto dto = serviceHitMapper.toDto(saved);
-        log.info("StatService converted dto: {}", dto);
+        log.debug("Mapped ServiceHit entity back to StatRequestDto: {}", dto);
+
+        log.info("Hit registration completed successfully. Returning DTO: {}", dto);
         return dto;
     }
 
     public List<StatResponseDto> getHits(LocalDateTime start, LocalDateTime end, String[] uris, Boolean unique) {
-        List<StatResponseDto> statResponseDtos;
-        statResponseDtos = statRepository.getHitListElementDtos(start, end, uris, unique);
+        log.info("Retrieving hits with the following parameters: start={}, end={}, uris={}, unique={}",
+                start, end, Arrays.toString(uris), unique);
+
+        log.debug("Starting query in repository with parameters: start={}, end={}, uris={}, unique={}",
+                start, end, Arrays.toString(uris), unique);
+
+        List<StatResponseDto> statResponseDtos = statRepository.getHitListElementDtos(start, end, uris, unique);
+
+        log.debug("Retrieved {} records from repository: {}", statResponseDtos.size(), statResponseDtos);
+
+        log.info("Completed retrieving hits. Total records found: {}", statResponseDtos.size());
         return statResponseDtos;
     }
 }
