@@ -92,7 +92,8 @@ public class EventServiceImpl implements EventService {
         log.debug("Validating event date: {}", eventDate);
         if (eventDate.isBefore(LocalDateTime.now().plusHours(minHoursAhead))) {
             log.error("Invalid event date: {}. Must be at least {} hours ahead.", eventDate, minHoursAhead);
-            throw new DataTimeException("The date and time of the event cannot be earlier than " + minHoursAhead + " hours from now.");
+            throw new DataTimeException("The date and time of the event cannot be earlier than "
+                    + minHoursAhead + " hours from now.");
         }
         log.debug("Event date {} is valid", eventDate);
     }
@@ -194,7 +195,8 @@ public class EventServiceImpl implements EventService {
     private void validateEventStateForUpdate(Event event) {
         if (event.getState().equals(State.PUBLISHED)) {
             log.error("Cannot update published event with id={}", event.getId());
-            throw new RestrictionsViolationException("You can only change canceled events or events in the waiting state for moderation");
+            throw new RestrictionsViolationException("You can only change canceled events or events" +
+                    " in the waiting state for moderation");
         }
     }
 
@@ -647,7 +649,8 @@ public class EventServiceImpl implements EventService {
         }
     }
 
-    private EventRequestStatusUpdateResultDto createEventRequestStatusUpdateResult(List<ParticipationRequestDto> requests) {
+    private EventRequestStatusUpdateResultDto createEventRequestStatusUpdateResult(
+            List<ParticipationRequestDto> requests) {
         if (CollectionUtils.isEmpty(requests)) {
             log.warn("No participation requests provided for result creation");
             return new EventRequestStatusUpdateResultDto(Collections.emptyList(), Collections.emptyList());
