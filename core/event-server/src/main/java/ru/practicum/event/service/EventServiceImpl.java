@@ -193,7 +193,7 @@ public class EventServiceImpl implements EventService {
     }
 
     private void validateEventStateForUpdate(Event event) {
-        if (event.getState().equals(State.PUBLISHED)) {
+        if (event.getState() == (State.PUBLISHED)) {
             log.error("Cannot update published event with id={}", event.getId());
             throw new RestrictionsViolationException("You can only change canceled events or events" +
                     " in the waiting state for moderation");
@@ -384,7 +384,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Transactional
     public EventFullDto findPublicEventById(long id, HttpServletRequest request) {
         log.info("Looking for public event with id={}", id);
         Event event = fetchPublishedEventById(id);
@@ -576,7 +575,7 @@ public class EventServiceImpl implements EventService {
             throw new DataTimeException("The start date of the event to be modified must be no earlier " +
                     "than one hour from the date of publication.");
         }
-        if (!event.getState().equals(State.PENDING)) {
+        if (!(event.getState() == (State.PENDING))) {
             log.error("Event id={} cannot be published as it is not in PENDING state", event.getId());
             throw new RestrictionsViolationException("An event can be published only if it is in the waiting state " +
                     "for publication.");
@@ -587,7 +586,7 @@ public class EventServiceImpl implements EventService {
     }
 
     private void handleRejectEvent(Event event) {
-        if (event.getState().equals(State.PUBLISHED)) {
+        if (event.getState() == (State.PUBLISHED)) {
             log.error("Event id={} cannot be rejected as it is already PUBLISHED", event.getId());
             throw new RestrictionsViolationException("An event can be rejected only if it has not been " +
                     "published yet.");

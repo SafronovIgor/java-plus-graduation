@@ -1,6 +1,7 @@
 package ru.practicum.compilation.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.practicum.event.model.Event;
@@ -27,6 +28,7 @@ public class Compilation {
 
     Boolean pinned;
 
+    @NotBlank
     String title;
 
     @Override
