@@ -17,7 +17,7 @@ public class AggregatorProducerServiceImpl implements AggregatorProducerService 
     public void aggregateUserActions(EventSimilarityAvro message) {
         Producer<String, SpecificRecordBase> producer = producerConfig.getKafkaProducer();
         ProducerRecord<String, SpecificRecordBase> record = new ProducerRecord<>(
-                producerConfig.getTopics().get("events-similarity"),
+                producerConfig.getTopics().get("events.similarity"),
                 message
         );
         producer.send(record);
