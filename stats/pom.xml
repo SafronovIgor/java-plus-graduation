@@ -18,5 +18,6 @@
         <module>avro-schemas</module>
         <module>proto-schemas</module>
         <module>collector-server</module>
+        <module>aggregator-server</module>
     </modules>
 </project>
