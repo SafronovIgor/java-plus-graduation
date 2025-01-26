@@ -23,6 +23,5 @@ public interface StatsServerHttpClient {
     List<StatResponseDto> getStats(@RequestParam("start") @DateTimeFormat(pattern = DataTransferConvention.DATE_TIME_PATTERN) LocalDateTime start,
                                    @RequestParam("end") @DateTimeFormat(pattern = DataTransferConvention.DATE_TIME_PATTERN) LocalDateTime end,
                                    @RequestParam(value = "uris", required = false) String[] uris,
-                                   @RequestParam(value = "unique", defaultValue = "false")
-                                   Boolean unique);
+                                   @RequestParam(value = "unique", defaultValue = "false") Boolean unique);
 }

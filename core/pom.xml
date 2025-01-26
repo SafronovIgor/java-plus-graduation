@@ -13,7 +13,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>main-service</module>
+        <module>event-server</module>
+        <module>user-server</module>
+        <module>request-server</module>
+        <module>interaction-lib</module>
     </modules>
 
     <properties>
