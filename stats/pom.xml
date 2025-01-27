@@ -19,5 +19,6 @@
         <module>proto-schemas</module>
         <module>collector-server</module>
         <module>aggregator-server</module>
+        <module>analyzer-server</module>
     </modules>
 </project>

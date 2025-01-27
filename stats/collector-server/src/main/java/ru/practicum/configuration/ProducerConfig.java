@@ -17,7 +17,15 @@ import java.util.Properties;
 @ConfigurationProperties("collector.kafka.producer")
 public class ProducerConfig {
     private Map<String, String> properties;
-    private Map<String, String> topics;     //in config-server => application.yaml
+    private Map<String, String> topics;
+
+    public Map<String, String> getProperties() {
+        return properties == null ? Map.of() : Map.copyOf(properties);
+    }
+
+    public Map<String, String> getTopics() {
+        return topics == null ? Map.of() : Map.copyOf(topics);
+    }
 
     public Producer<String, SpecificRecordBase> getKafkaProducer() {
         return new KafkaProducer<>(getPropertiesForKafkaProducer());
